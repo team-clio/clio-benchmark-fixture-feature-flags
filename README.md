@@ -16,5 +16,7 @@ uv run pytest
 - `src/feature_flags/repository.py`: 테넌트별 플래그 저장소
 - `src/feature_flags/cache.py`: 조회 결과 캐시
 - `src/feature_flags/service.py`: 플래그 조회 서비스
+- `src/feature_flags/authorization.py`: 관리자 권한과 프로젝트 범위 검사
+- `src/feature_flags/rollout.py`: percentage rollout 계산
+- `src/feature_flags/targeting.py`: 국가·사용자 타기팅
 - `benchmark.json`: Clio에 전달할 버그 리포트
-

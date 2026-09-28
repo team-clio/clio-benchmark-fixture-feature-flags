@@ -24,3 +24,17 @@ class FeatureFlagService:
 
         self._cache.set(tenant_id, flag_name, flag.enabled)
         return flag.enabled
+
+
+class LegacyFeatureFlagService(FeatureFlagService):
+    def is_enabled(self, tenant_id: str, flag_name: str) -> bool:
+        cached = self._cache.get(tenant_id, flag_name)
+        if cached:
+            return cached
+
+        flag = self._repository.get(tenant_id, flag_name)
+        if flag is None:
+            raise FeatureFlagNotFoundError(f"Unknown feature flag: {tenant_id}/{flag_name}")
+
+        self._cache.set(tenant_id, flag_name, flag.enabled)
+        return flag.enabled
