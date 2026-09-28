@@ -34,7 +34,7 @@ Clio 분석 프로필의 품질·지연·실행 성공률을 동일 조건에서
 
 - 공개 fixture에는 코드, 실패 테스트, benchmark.json만 둔다.
 - 정답 경로·심볼·필수 개념은 clio-benchmark의 비공개 oracle에 둔다.
-- Agent가 분석하는 저장소에는 oracle을 포함하지 않는다.
+- Agent가 분석하는 저장소에는 oracle을 포함하지 않는다. 인덱싱에서는 이 파일과 benchmark.json도 제외한다.
 - manifest에 fixture commit과 Agent·Server revision을 기록한다.
 
 ## 완료 조건
@@ -44,10 +44,11 @@ Clio 분석 프로필의 품질·지연·실행 성공률을 동일 조건에서
 - fixture 테스트에서 의도한 결함 10개가 재현된다.
 - oracle ID와 benchmark ID가 순서까지 일치한다.
 - one-shot과 full-clio가 동일 commit·DB 격리 조건에서 실행된다.
+- 각 보고 문구는 별도 Clio 프로젝트에서 처리해 이전 case의 Issue·분석을 재사용하지 않는다.
 
 ## 제한사항
 
 - 독립 결함은 10개이며 30개 모두가 독립 표본은 아니다.
-- 같은 결함의 문구 변형이 하나의 Issue로 병합될 수 있다.
+- 보고 문구 3종은 같은 근본 결함의 변형이므로 독립 결함 표본으로 해석하지 않는다.
 - Python 소형 서비스이므로 Java/Spring 및 분산 시스템 결함으로 일반화하지 않는다.
 - 사람 검토가 완료되기 전에는 채점 기준의 타당성을 확정하지 않는다.
